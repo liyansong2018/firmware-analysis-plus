@@ -1,8 +1,10 @@
 # firmware-analysis-plus
+本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
 ### 安装
 运行 ./setup.sh 
 
 ### 运行
+
 '''
 root@kali:~/Documents/firmware-analysis-plus# python3 fat.py 
 

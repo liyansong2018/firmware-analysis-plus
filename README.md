@@ -5,7 +5,7 @@
 
 ### 运行
 
-'''
+```
 root@kali:~/Documents/firmware-analysis-plus# python3 fat.py 
 
              
@@ -21,4 +21,8 @@ root@kali:~/Documents/firmware-analysis-plus# python3 fat.py
     
 usage: fat.py [-h] [-q qemu_path] firm_path
 fat.py: error: the following arguments are required: firm_path
-'''
+```
+例如
+```
+python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /root/Documents/test/WNAP320_V3.7.11.4.zip
+```

@@ -1,5 +1,15 @@
 # firmware-analysis-plus
 本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
+
+### 准备
+源码安装 binwalk
+```
+# Python2.7
+$ git clone https://github.com/ReFirmLabs/binwalk.git
+$ cd binwalk
+$ sudo python setup.py install
+```
+
 ### 安装
 运行 ./setup.sh 
 
@@ -26,3 +36,6 @@ fat.py: error: the following arguments are required: firm_path
 ```
 python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /root/Documents/test/WNAP320_V3.7.11.4.zip
 ```
+
+### 解答
+如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可

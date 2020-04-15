@@ -13,6 +13,9 @@ $ sudo python setup.py install
 ### 安装
 运行 ./setup.sh 
 
+### 配置
+修改 `fat.config` 文件中的密码，改为 root 系统用户的密码
+
 ### 运行
 
 ```

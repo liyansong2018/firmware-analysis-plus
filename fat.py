@@ -25,7 +25,7 @@ def show_banner():
 		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
                 Welcome to the Firmware Analysis Plus - v0.1
-            By lys - hhttps://blog.csdn.net/song_lee | @liyansong
+            By lys - https://blog.csdn.net/song_lee | @liyansong
     """)
 
 

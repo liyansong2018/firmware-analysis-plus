@@ -7,6 +7,7 @@
 # Python2.7
 $ git clone https://github.com/ReFirmLabs/binwalk.git
 $ cd binwalk
+$ sudo ./deps.sh
 $ sudo python setup.py install
 ```
 

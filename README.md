@@ -2,7 +2,7 @@
 本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
 
 ### 准备
-源码安装 binwalk
+源码安装 binwalk，如果是 Kali 用户，自带了 binwalk，可忽略此步骤
 ```
 # Python2.7
 $ git clone https://github.com/ReFirmLabs/binwalk.git

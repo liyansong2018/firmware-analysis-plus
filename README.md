@@ -2,7 +2,7 @@
 本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
 
 ### 准备
-源码安装 binwalk，如果是 Kali 用户，自带了 binwalk，可忽略此步骤
+源码安装 binwalk，如果是 Kali 2019 版本及以前的用户，自带了 binwalk，可忽略此步骤。Kali2020 自带 binwalk，不支持 python2，可能会报错。Ubuntu 一定要使用源码安装的方式，安装 binwalk，遇到错误，请访问 [基于Firmadyne的固件模拟环境搭建](https://blog.csdn.net/song_lee/article/details/104393933) 0x22 节
 ```
 # Python2.7
 $ git clone https://github.com/ReFirmLabs/binwalk.git
@@ -12,7 +12,7 @@ $ sudo python setup.py install
 ```
 
 ### 安装
-运行 ./setup.sh 
+运行 `./setup.sh` ，如果报错，请使用备用文件 `./setup2kali.sh`，国内网路不通畅，如果更新卡住，终止程序，多试几次就好了
 
 ### 配置
 修改 `fat.config` 文件中的密码，改为 root 系统用户的密码
@@ -42,4 +42,4 @@ python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /
 ```
 
 ### 解答
-如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可
+运行时如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可

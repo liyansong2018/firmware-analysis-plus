@@ -43,4 +43,5 @@ python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /
 
 ### F&Q
 运行时如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可
+
 其他异常请参见: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)

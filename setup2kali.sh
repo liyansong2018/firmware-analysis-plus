@@ -2,8 +2,8 @@
 
 sudo apt update
 sudo python get-pip.py
-sudo python3 get-pip.py
-sudo apt install -y python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils
+#sudo python3 get-pip.py
+sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils
 sudo pip2 install python-magic -i https://mirrors.aliyun.com/pypi/simple/ 
 
 cd firmadyne

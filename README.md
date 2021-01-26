@@ -30,7 +30,7 @@ root@kali:~/Documents/firmware-analysis-plus# python3 fat.py
 		| |     | | | | | | | | | | | | | | | | \__ \ 
 		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v0.1
+                Welcome to the Firmware Analysis Plus - v1.2
             By lys - https://blog.csdn.net/song_lee | @liyansong
     
 usage: fat.py [-h] [-q qemu_path] firm_path
@@ -44,4 +44,6 @@ python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /
 ### F&Q
 运行时如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可
 
-其他异常请参见: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
+或者直接运行 `./reset.py`
+
+其他异常请参见`issue`或者博客: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)

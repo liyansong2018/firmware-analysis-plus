@@ -1,49 +1,41 @@
 # firmware-analysis-plus
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-3776AB?logo=Python&logoColor=FFFFFF&style=flat)](https://www.python.org/)
+[![issues](https://img.shields.io/github/issues/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues)
+![license](https://img.shields.io/github/license/liyansong2018/firmware-analysis-plus)
+
 本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
 
-### 准备
-源码安装 binwalk，自带的 binwalk 可能缺少某些依赖
+## 安装 binwalk
+以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
 ```
-# Python2.7
-$ git clone https://github.com/ReFirmLabs/binwalk.git
-$ cd binwalk
-$ sudo ./deps.sh
-$ sudo python setup.py install
+git clone https://github.com/liyansong2018/binwalk.git
+cd binwalk
+sudo ./deps.sh
+sudo python3 setup.py install
 ```
 
-### 安装
-运行 `./setup.sh` ，如果报错，请使用备用文件 `./setup2kali.sh`，国内网络不通畅，如果更新卡住，终止程序，多试几次就好了
+## 安装 FAP
 
-### 配置
+```shell
+git clone https://github.com/liyansong2018/firmware-analysis-plus.git
+cd firmware-analysis-plus
+./setup.sh
+```
+
+## 配置
 修改 `fat.config` 文件中的密码，改为 root 系统用户的密码
 
-### 运行
+## 运行
 
 ```
-root@kali:~/Documents/firmware-analysis-plus# python3 fat.py 
-
-             
-		______   _                ___                 
-		|  ___| (_)              / _ \                
-		| |_     _   _ __ ___   / /_\ \  _ __    ___  
-		|  _|   | | | '_ ` _ \  |  _  | | '_ \  / __| ++
-		| |     | | | | | | | | | | | | | | | | \__ \ 
-		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
-
-                Welcome to the Firmware Analysis Plus - v1.0
-            By lys - https://blog.csdn.net/song_lee | @liyansong
-    
-usage: fat.py [-h] [-q qemu_path] firm_path
-fat.py: error: the following arguments are required: firm_path
-```
-例如
-```
-python3 fat.py -q /root/Documents/firmware-analysis-toolkit/qemu-builds/2.5.0/ /root/Documents/test/WNAP320_V3.7.11.4.zip
+./fat.py -q ./2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar
 ```
 
-### F&Q
-运行时如果遇到错误，请删除 `firmadyne` 目录下自动生成的镜像文件 `images` 以及文件系统 `scratch`，重新运行即可
+![run](images/run.png)
 
-或者直接运行 `./reset.py`
+## 重新运行固件时，请删除中间文件
+```shell
+./reset.py
+```
 
-其他异常请参见`issue`或者博客: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
+博客: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)

@@ -24,7 +24,7 @@ def show_banner():
 		| |     | | | | | | | | | | | | | | | | \__ \ 
 		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v1.0
+                Welcome to the Firmware Analysis Plus - v2.0
             By lys - https://blog.csdn.net/song_lee | @liyansong
     """)
 
@@ -49,7 +49,7 @@ def run_extractor(firm_name):
         os.path.join(firmadyne_path, "images")
     ]
 
-    child = pexpect.spawn("python2", extractor_args, timeout=None)
+    child = pexpect.spawn("python3", extractor_args, timeout=None)
     child.expect_exact("Tag: ")
     tag = child.readline().strip().decode("utf8")
     child.expect_exact(pexpect.EOF)

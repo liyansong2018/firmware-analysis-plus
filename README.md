@@ -31,7 +31,7 @@ cd firmware-analysis-plus
 ```
 
 ## 配置
-修改 `fat.config` 文件中的密码，改为 root 系统用户的密码
+修改 `fat.config` 文件中的密码，改为 `root` 系统用户的密码
 
 ## 运行
 
@@ -47,3 +47,16 @@ cd firmware-analysis-plus
 ```
 
 博客: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
+
+# V2.0 变化
+- 安装流程进一步简化，增加新版本库的支持，删除冗余库
+- 移除 `python2`，之前的版本需要 `python2` 和 `python3` 的同时支持
+- 移除 `setup2kali.sh`，同时修改 `setup.sh`
+- 修改 `firmadyne` 源码中的 `inferNetwork.sh` 文件
+- 修改 `firmaydne` 源码中的 `extractor.py` 文件
+- 修改 `firmaydne` 源码中的 `extractor.py` 文件
+- 修改 `binwalk` 安装文件
+
+修改的部分详情可参考：[5e97d990d98775462218f2acc41d4e6fe80b7d1c](https://github.com/liyansong2018/firmware-analysis-plus/commit/5e97d990d98775462218f2acc41d4e6fe80b7d1c)
+
+欢迎提交修改代码，pull requests！

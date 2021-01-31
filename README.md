@@ -10,7 +10,7 @@
 ```
 git clone https://github.com/liyansong2018/binwalk.git
 cd binwalk
-sudo ./deps.sh
+./deps.sh
 sudo python3 setup.py install
 ```
 

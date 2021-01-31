@@ -30,7 +30,7 @@ root@kali:~/Documents/firmware-analysis-plus# python3 fat.py
 		| |     | | | | | | | | | | | | | | | | \__ \ 
 		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v1.2
+                Welcome to the Firmware Analysis Plus - v1.0
             By lys - https://blog.csdn.net/song_lee | @liyansong
     
 usage: fat.py [-h] [-q qemu_path] firm_path

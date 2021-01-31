@@ -12,7 +12,7 @@ $ sudo python setup.py install
 ```
 
 ### 安装
-运行 `./setup.sh` ，如果报错，请使用备用文件 `./setup2kali.sh`，国内网路不通畅，如果更新卡住，终止程序，多试几次就好了
+运行 `./setup.sh` ，如果报错，请使用备用文件 `./setup2kali.sh`，国内网络不通畅，如果更新卡住，终止程序，多试几次就好了
 
 ### 配置
 修改 `fat.config` 文件中的密码，改为 root 系统用户的密码

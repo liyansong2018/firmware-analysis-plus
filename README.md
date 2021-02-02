@@ -54,7 +54,6 @@ cd firmware-analysis-plus
 - 移除 `setup2kali.sh`，同时修改 `setup.sh`
 - 修改 `firmadyne` 源码中的 `inferNetwork.sh` 文件
 - 修改 `firmaydne` 源码中的 `extractor.py` 文件
-- 修改 `firmaydne` 源码中的 `extractor.py` 文件
 - 修改 `binwalk` 安装文件
 
 修改的部分详情可参考：[5e97d990d98775462218f2acc41d4e6fe80b7d1c](https://github.com/liyansong2018/firmware-analysis-plus/commit/5e97d990d98775462218f2acc41d4e6fe80b7d1c)

@@ -7,14 +7,16 @@
 
 上游项目支持：[binwalk](https://github.com/ReFirmLabs/binwalk)、[firmadyne](https://github.com/firmadyne/firmadyne)、[firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)
 
-**firmware-analysis-plus**（**FAP**）主要用于常见**路由器固件的仿真**，能够用于固件的安全测试。感谢以下开源项目：`binwalk` 为我们提供了优秀的固件解压 API，`firmadyne` 为我们提供了优秀的固件仿真的核心支持，`firmware-analysis-toolkit` 为我们提供了简化流程的思想。
+**firmware-analysis-plus**（**FAP**）主要用于常见**路由器固件的仿真**，可以进行固件的安全测试。感谢以下开源项目：`binwalk` 提供优秀的固件提取 API，`firmadyne` 提供优秀的固件仿真核心支持，`firmware-analysis-toolkit` 提供简化流程的思想。
 
-**FAP** 只是在前人的基础上，做出改进和定制。包括精简不必要组件，优化仿真流程，优化网络环境大幅压缩安装时间，修复若干 `bug`，一键仿真固件。其原理还是利用了 `qemu` 为我们提供的多个架构的模拟器去模拟硬件，利用 `libnvram` 的重写，`hook` 对若干硬件访问的函数。
+**FAP** 只是巨人的肩膀上，做出改进和定制，提供一个更加高效的仿真平台。包括精简不必要组件，优化仿真流程，优化网络环境大幅压缩安装时间，修复若干 `bug`，一键仿真固件。其原理主要包括两点
+- `qemu` 提供多种架构指令的模拟，用自己编译的内核启动固件中的核心业务
+- 重写文件系统 `libnvram` ，`hook` 对若干硬件访问的函数，实现外围设备配置参数的模拟，从而突破设备驱动的限制。
 
 | FAP 版本                                                     | python 版本      | 支持系统                                        | 安装方法                                                     |
 | ------------------------------------------------------------ | ---------------- | ----------------------------------------------- | ------------------------------------------------------------ |
 | [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/0.1) | python2、python3 | Ubuntu16.04、Ubuntu 18.04、Kali 2020.02         | [FAP v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
-| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/1.0) | python2、python3 | beta                                            | beta                                                         |
+| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/1.0) | python2、python3 | Beta                                            | Beta                                                         |
 | [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/2.0) | python3          | Kali 2020.04（不支持 Ubuntu 20.04，其他未测试） | 如下所示                                                     |
 
 
@@ -50,7 +52,7 @@ cd firmware-analysis-plus
 
 ![run](images/run.png)
 
-## 当生成的中间文件过多时，请删除中间文件
+## 重置和删除中间文件
 
 ```shell
 ./reset.py

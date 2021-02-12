@@ -1,10 +1,11 @@
 # firmware-analysis-plus
+
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-3776AB?logo=Python&logoColor=FFFFFF&style=flat)](https://www.python.org/)
 [![issues](https://img.shields.io/github/issues/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues)
 [![issues](https://img.shields.io/github/issues-closed/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues?q=is%3Aissue+is%3Aclosed)
 [![license](https://img.shields.io/github/license/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/blob/master/LICENSE)
 
-本项目依赖于 [firmadyne](https://github.com/firmadyne/firmadyne) 以及 [firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)，修复了其中的大量bug，可直接运行固件。
+上游项目支持：[binwalk](https://github.com/ReFirmLabs/binwalk)、[firmadyne](https://github.com/firmadyne/firmadyne)、[firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)
 
 | FAP 版本                                                     | python 版本      | 支持系统                                        | 安装方法                                                     |
 | ------------------------------------------------------------ | ---------------- | ----------------------------------------------- | ------------------------------------------------------------ |
@@ -15,7 +16,9 @@
 
 
 ## 安装 binwalk
+
 以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
+
 ```
 git clone https://github.com/liyansong2018/binwalk.git
 cd binwalk
@@ -32,6 +35,7 @@ cd firmware-analysis-plus
 ```
 
 ## 配置
+
 修改 `fat.config` 文件中的密码，改为 `root` 系统用户的密码
 
 ## 运行
@@ -42,21 +46,53 @@ cd firmware-analysis-plus
 
 ![run](images/run.png)
 
-## 重新运行固件时，请删除中间文件
+## 当生成的中间文件过多时，请删除中间文件
+
 ```shell
 ./reset.py
 ```
 
-博客: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
+原始博客（已过时，不建议使用）: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
 
 # V2.0 变化
+
 - 安装流程进一步简化，增加新版本库的支持，删除冗余库
 - 移除 `python2`，之前的版本需要 `python2` 和 `python3` 的同时支持
 - 移除 `setup2kali.sh`，同时修改 `setup.sh`
 - 修改 `firmadyne` 源码中的 `inferNetwork.sh` 文件
 - 修改 `firmaydne` 源码中的 `extractor.py` 文件
-- 修改 `binwalk` 安装文件
-
-修改的部分详情可参考：[5e97d990d98775462218f2acc41d4e6fe80b7d1c](https://github.com/liyansong2018/firmware-analysis-plus/commit/5e97d990d98775462218f2acc41d4e6fe80b7d1c)
+- 修改 `binwalk` 安装脚本
 
 欢迎提交修改代码，pull requests！
+
+# FAQ
+
+## FAP 支持的固件
+
+FAP 通用版（上游 firmadyne 项目提供）
+
+- [wnap320_V3.7.11.4_firmware.tar](https://github.com/liyansong2018/firmware-analysis-plus/tree/master/testcases)
+
+- DIR-601_REVB_FIRMWARE_2.01.BIN
+
+- DIR890A1_FW103b07.bin
+
+- DIR-505L_FIRMWARE_1.01.ZIP
+
+- DIR-615_REVE_FIRMWARE_5.11.ZIP
+
+- DGL-5500_REVA_FIRMWARE_1.12B05.ZIP
+
+- WRT54G3G_2.11.05_ETSI_code.bin
+
+- NBG-416N_V1.00(USA.7)C0.zip
+
+- TEW-638v2%201.1.5.zip
+
+- Firmware_TEW-411BRPplus_2.07_EU.zip
+
+- DGND3700 Firmware Version 1.0.0.17(NA).zip
+
+FAP 定制版（针对特定固件定制的版本）
+
+- [FAP-DIR2640.tar.bz2](https://github.com/liyansong2018/firmware-analysis-plus/releases)

@@ -59,7 +59,7 @@ cd firmware-analysis-plus
 ./reset.py
 ```
 
-原始博客（已过时，不建议使用）: [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
+博客：[开源固件仿真平台FAP对嵌入式固件的模拟与定制](https://www.freebuf.com/sectool/264053.html)
 
 # V2.0 变化
 

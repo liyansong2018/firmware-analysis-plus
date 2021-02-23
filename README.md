@@ -89,6 +89,7 @@ FAP 通用版（上游 firmadyne 项目提供）
 - TEW-638v2%201.1.5.zip
 - Firmware_TEW-411BRPplus_2.07_EU.zip
 - DGND3700 Firmware Version 1.0.0.17(NA).zip
+- **DIR-300A1_FW105b09.bin**
 
 FAP 定制版（针对特定固件定制的版本）
 

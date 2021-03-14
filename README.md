@@ -95,3 +95,5 @@ FAP 通用版（上游 firmadyne 项目提供）
 FAP 定制版（针对特定固件定制的版本）
 
 - [FAP-DIR2640.tar.bz2](https://github.com/liyansong2018/firmware-analysis-plus/releases)
+- TL-WR802N(US)_V4_200
+- Archer_C50v5_US_0.9.1_0.2

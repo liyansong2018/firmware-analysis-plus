@@ -24,8 +24,8 @@ def show_banner():
 		| |     | | | | | | | | | | | | | | | | \__ \ 
 		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v2.0
-            By lys - https://blog.csdn.net/song_lee | @liyansong
+                Welcome to the Firmware Analysis Plus - v2.1
+ By lys - https://github.com/liyansong2018/firmware-analysis-plus | @liyansong
     """)
 
 
@@ -36,38 +36,51 @@ def get_next_unused_iid():
     return ""
 
 
-def run_extractor(firm_name):
+def run_extractor(firm_name, binwalk):
     print ("[+] Firmware:", os.path.basename(firm_name))
     print ("[+] Extracting the firmware...")
 
-    extractor_cmd = os.path.join(firmadyne_path, "sources/extractor/extractor.py")
-    extractor_args = [
-    	extractor_cmd,
-        "-np",
-        "-nk",
-        firm_name,
-        os.path.join(firmadyne_path, "images")
-    ]
+    if binwalk == "1" or binwalk == "yes" or binwalk == None:
+        extractor_cmd = os.path.join(firmadyne_path, "sources/extractor/extractor.py")
+        extractor_args = [
+            extractor_cmd,
+            "-np",
+            "-nk",
+            firm_name,
+            os.path.join(firmadyne_path, "images")
+        ]
 
-    child = pexpect.spawn("python3", extractor_args, timeout=None)
-    child.expect_exact("Tag: ")
-    tag = child.readline().strip().decode("utf8")
-    child.expect_exact(pexpect.EOF)
+        child = pexpect.spawn("python3", extractor_args, timeout=None)
+        child.expect_exact("Tag: ")
+        tag = child.readline().strip().decode("utf8")
+        child.expect_exact(pexpect.EOF)
+        
+        image_tgz = os.path.join(firmadyne_path, "images", tag + ".tar.gz")
 
-    image_tgz = os.path.join(firmadyne_path, "images", tag + ".tar.gz")
+        if os.path.isfile(image_tgz):
+            iid = get_next_unused_iid()
+            if iid == "" or os.path.isfile(os.path.join(os.path.dirname(image_tgz), iid + ".tar.gz")):
+                print ("[!] Too many stale images")
+                print ("[!] Please run reset.py or manually delete the contents of the scratch/ and images/ directory")
+                return ""
 
-    if os.path.isfile(image_tgz):
-        iid = get_next_unused_iid()
-        if iid == "" or os.path.isfile(os.path.join(os.path.dirname(image_tgz), iid + ".tar.gz")):
-            print ("[!] Too many stale images")
-            print ("[!] Please run reset.py or manually delete the contents of the scratch/ and images/ directory")
-            return ""
+            os.rename(image_tgz, os.path.join(os.path.dirname(image_tgz), iid + ".tar.gz"))
+            print ("[+] Image ID:", iid)
+            return iid
 
-        os.rename(image_tgz, os.path.join(os.path.dirname(image_tgz), iid + ".tar.gz"))
-        print ("[+] Image ID:", iid)
-        return iid
+        return ""
+    
+    else:
+        tag = "1"
+        image_path_name = os.path.join(firmadyne_path, "images", os.path.basename(firm_name))
+        image_path = os.path.join(firmadyne_path, "images")
+        os.system("./reset.py")
+        os.system("cp {} {}".format(firm_name, image_path))
+        os.system("mv {} {}".format(image_path_name, image_path + "/" + tag + ".tar.gz"))
 
-    return ""
+        print ("[+] Image ID:", tag)
+        return tag
+
 
 
 def identify_arch(image_id):
@@ -142,6 +155,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("firm_path", help="The path to the firmware image", type=str)
     parser.add_argument("-q", "--qemu", metavar="qemu_path", help="The qemu version to use (must exist within qemu-builds directory). If not specified, the qemu version installed system-wide will be used", type=str)
+    parser.add_argument("-b", "--binwalk", metavar="compiled_binwalk", help="Has binwalk been compiled? yes or no, 1 or 0", type=str)
     args = parser.parse_args()
 
     qemu_ver = args.qemu
@@ -153,7 +167,7 @@ def main():
             print ("[+] Using system qemu")
             qemu_dir = None
 
-    image_id = run_extractor(args.firm_path)
+    image_id = run_extractor(args.firm_path, args.binwalk)
 
     if image_id == "":
         print ("[!] Image extraction failed")

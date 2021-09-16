@@ -79,7 +79,10 @@ cd firmware-analysis-plus
 
 此时回车，可以进入路由器的 shell，也可以打开 Web 端路由器管理页面。
 
-
+## 关闭
+```shell
+./shutdown.py
+```
 
 ## 重置和删除中间文件
 

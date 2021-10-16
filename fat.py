@@ -75,7 +75,8 @@ def run_extractor(firm_name, binwalk):
         image_path_name = os.path.join(firmadyne_path, "images", os.path.basename(firm_name))
         image_path = os.path.join(firmadyne_path, "images")
         os.system("./reset.py")
-        os.system("mkdir {}".format("firmadyne/images"))
+        if not os.path.exists("firmadyne/images"):
+        	os.system("mkdir {}".format("firmadyne/images"))
         os.system("cp {} {}".format(firm_name, image_path + "/"))
         os.system("mv {} {}".format(image_path_name, image_path + "/" + tag + ".tar.gz"))
 

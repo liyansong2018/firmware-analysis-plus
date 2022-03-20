@@ -4,6 +4,7 @@
 [![issues](https://img.shields.io/github/issues/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues)
 [![issues](https://img.shields.io/github/issues-closed/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues?q=is%3Aissue+is%3Aclosed)
 [![license](https://img.shields.io/github/license/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/blob/master/LICENSE)
+![Visitor count](https://shields-io-visitor-counter.herokuapp.com/badge?page=liyansong2018.firmware-analysis-plus)
 
 上游项目支持：[binwalk](https://github.com/ReFirmLabs/binwalk)、[firmadyne](https://github.com/firmadyne/firmadyne)、[firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)
 
@@ -77,7 +78,7 @@ cd firmware-analysis-plus
 
 此时回车，可以进入路由器的 shell，也可以打开 Web 端路由器管理页面。
 
-## 关闭
+## 关闭终端
 
 ```shell
 ./shutdown.py
@@ -142,10 +143,10 @@ fap 定制版（针对特定固件定制的版本）
 
 ## 已发现的安全漏洞
 
-比较幸运的是，我们也是用该工具发现了一些路由器的安全漏洞，因此，使用firmware-analysis-plus可以很方便的复现 IoT 固件安全漏洞，提供靶场和演练环境。比较典型的漏洞如下
+比较幸运的是，我们也是用该工具发现了一些路由器的安全漏洞，因此，使用 firmware-analysis-plus 不仅可以复现 IoT 固件安全漏洞，提供靶场和演练环境，也可以用于漏洞挖掘。2021 年通过 firmware-analysis-plus 发现的可以实现远程代码执行的漏洞如下
 
 - [CVE-2021-29302](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-29302)
 - [CVE-2021-34202](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34202)
 - [CVE-2021-34203](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34203)
 
-由于个人精力有限，加之上游项目 firmadyne 不再进行架构调整，因此本项目近期不会更新。但是仍旧可以用来进行 IoT 漏洞研究。
+> 由于个人精力有限，加之上游项目 firmadyne 架构近几年没有进行调整，因此本项目近期不会更新，但是仍然可以用来进行 IoT 漏洞挖掘或者研究。

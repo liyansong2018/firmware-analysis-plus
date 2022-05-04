@@ -1,10 +1,6 @@
 # firmware-analysis-plus
 
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-3776AB?logo=Python&logoColor=FFFFFF&style=flat)](https://www.python.org/)
-[![issues](https://img.shields.io/github/issues/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues)
-[![issues](https://img.shields.io/github/issues-closed/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues?q=is%3Aissue+is%3Aclosed)
-[![license](https://img.shields.io/github/license/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/blob/master/LICENSE)
-![Visitor count](https://shields-io-visitor-counter.herokuapp.com/badge?page=liyansong2018.firmware-analysis-plus)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-3776AB?logo=Python&logoColor=FFFFFF&style=flat)](https://www.python.org/) [![issues](https://img.shields.io/github/issues/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues) [![issues](https://img.shields.io/github/issues-closed/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/issues?q=is%3Aissue+is%3Aclosed) [![license](https://img.shields.io/github/license/liyansong2018/firmware-analysis-plus)](https://github.com/liyansong2018/firmware-analysis-plus/blob/master/LICENSE) ![Visitor count](https://shields-io-visitor-counter.herokuapp.com/badge?page=liyansong2018.firmware-analysis-plus)
 
 上游项目支持：[binwalk](https://github.com/ReFirmLabs/binwalk)、[firmadyne](https://github.com/firmadyne/firmadyne)、[firmware-analysis-toolkit](https://github.com/attify/firmware-analysis-toolkit)
 
@@ -18,11 +14,13 @@
 
 | FAP 版本                                                     | python 版本      | 支持系统                                        | 安装方法                                                     |
 | ------------------------------------------------------------ | ---------------- | ----------------------------------------------- | ------------------------------------------------------------ |
-| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/0.1) | python2、python3 | Ubuntu16.04、Ubuntu 18.04、Kali 2020.02         | [fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
+| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02         | [fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
 | [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/1.0) | python2、python3 | Beta                                            | Beta                                                         |
-| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/2.0) | python3          | Kali 2020.04（不支持 Ubuntu 20.04，其他未测试） | 如下所示                                                     |
+| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/2.0) | python3          | Kali 2020.04 / Kali 2022.01 | 如下所示                                                     |
 
 ## 安装 binwalk
+
+**Kali 2022 请忽略此步骤！最新版本 Kali 已经完美的继承了 binwalk 的 API**
 
 以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
 
@@ -149,4 +147,4 @@ fap 定制版（针对特定固件定制的版本）
 - [CVE-2021-34202](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34202)
 - [CVE-2021-34203](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34203)
 
-> 由于个人精力有限，加之上游项目 firmadyne 架构近几年没有进行调整，因此本项目近期不会更新，但是仍然可以用来进行 IoT 漏洞挖掘或者研究。
+> 由于个人精力有限，加之上游项目 firmadyne 架构近几年没有进行调整，因此本项目近期不会更新，但是此工具仍然可用于 IoT 漏洞挖掘或者安全研究。

@@ -20,7 +20,7 @@
 
 ## 安装 binwalk
 
-**Kali 2022 请忽略此步骤！最新版本 Kali 已经完美的继承了 binwalk 的 API**
+**Kali 2022 请忽略此步骤！最新版本 Kali 已经完美集成 binwalk 的 API**
 
 以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
 

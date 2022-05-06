@@ -11,12 +11,9 @@ import os
 debug = 0
 
 QEMUCMDTEMPLATE = """#!/bin/bash
-
 set -u
-
 ARCHEND=%(ARCHEND)s
 IID=%(IID)i
-
 if [ -e ./firmadyne.config ]; then
     source ./firmadyne.config
 elif [ -e ../firmadyne.config ]; then
@@ -27,26 +24,20 @@ else
     echo "Error: Could not find 'firmadyne.config'!"
     exit 1
 fi
-
 IMAGE=`get_fs ${IID}`
 KERNEL=`get_kernel ${ARCHEND}`
 QEMU=`get_qemu ${ARCHEND}`
 QEMU_MACHINE=`get_qemu_machine ${ARCHEND}`
 QEMU_ROOTFS=`get_qemu_disk ${ARCHEND}`
 WORK_DIR=`get_scratch ${IID}`
-
 %(START_NET)s
-
 function cleanup {
     pkill -P $$
     %(STOP_NET)s
 }
-
 trap cleanup EXIT
-
 echo "Starting firmware emulation... use Ctrl-a + x to exit"
 sleep 1s
-
 %(QEMU_ENV_VARS)s ${QEMU} -m 256 -M ${QEMU_MACHINE} -kernel ${KERNEL} \\
     %(QEMU_DISK)s -append "root=${QEMU_ROOTFS} console=ttyS0 nandsim.parts=64,64,64,64,64,64,64,64,64,64 rdinit=/firmadyne/preInit.sh rw debug ignore_loglevel print-fatal-signals=1 user_debug=31 firmadyne.syscall=0" \\
     -nographic \\
@@ -80,7 +71,7 @@ def findMacChanges(data, endianness):
             result.append((iface, mac))
     return result
 
-# Get the netwokr interfaces in the router, except 127.0.0.1
+# Get the network interfaces in the router, except 127.0.0.0/8
 def findNonLoInterfaces(data, endianness):
     #lines = data.split("\r\n")
     lines = stripTimestamps(data)
@@ -97,7 +88,7 @@ def findNonLoInterfaces(data, endianness):
         if g:
             (iface, addr) = g.groups()
             addr = socket.inet_ntoa(struct.pack(fmt, int(addr, 16)))
-            if addr != "127.0.0.1" and addr != "0.0.0.0":
+            if (not addr.startswith("127.")) and addr != "0.0.0.0":
                 result.append((iface, addr))
     return result
 
@@ -138,31 +129,37 @@ def qemuArchNetworkConfig(i, arch, n):
         if arch == "arm":
             return "-device virtio-net-device,netdev=net%(I)i -netdev socket,id=net%(I)i,listen=:200%(I)i" % {'I': i}
         else:
-            return "-net nic,vlan=%(VLAN)i -net socket,vlan=%(VLAN)i,listen=:200%(I)i" % {'I': i, 'VLAN' : i}
+            return "-netdev socket,id=net%(I)i,listen=:200%(I)i -device e1000,netdev=net%(I)i" % {'I': i}
     else:
         (ip, dev, vlan, mac) = n
          # newer kernels use virtio only
         if arch == "arm":
-            return "-device virtio-net-device,netdev=net%(I)i -netdev tap,id=net%(I)i,ifname=${TAPDEV_%(I)i},script=no" % {'I': i}
+            return "-device virtio-net-device,netdev=nettap%(I)i -netdev tap,id=nettap%(I)i,ifname=${TAPDEV_%(I)i},script=no" % {'I': i}
         else:
             vlan_id = vlan if vlan else i
-            mac_str = "" if not mac else ",macaddr=%s" % mac
-            return "-net nic,vlan=%(VLAN)i%(MAC)s -net tap,vlan=%(VLAN)i,id=net%(I)i,ifname=${TAPDEV_%(I)i},script=no" % { 'I' : i, 'MAC' : mac_str, 'VLAN' : vlan_id}
+            mac_str = "" if not mac else ",mac=%s" % mac
+            return "-netdev tap,id=nettap%(I)i,ifname=${TAPDEV_%(I)i},script=no -device e1000,netdev=nettap%(I)i%(MAC)s" % { 'I' : i, 'MAC' : mac_str}
 
 def qemuNetworkConfig(arch, network):
     output = []
     assigned = []
-    for i in range(0, 4):
+
+    # Fix Id conflict bug
+    flag = 0
+    for k in range(0, 4):
         for j, n in enumerate(network):
             # need to connect the jth emulated network interface to the corresponding host interface
-            if i == ifaceNo(n[1]):
+            if k == ifaceNo(n[1]):
                 output.append(qemuArchNetworkConfig(j, arch, n))
                 assigned.append(n)
+                flag = j
                 break
 
-        # otherwise, put placeholder socket connection
-        if len(output) <= i:
-            output.append(qemuArchNetworkConfig(i, arch, None))
+    for i in range(0, 4):
+        if i != flag:
+            # otherwise, put placeholder socket connection
+            if len(output) <= i:
+                output.append(qemuArchNetworkConfig(i, arch, None))
 
     # find unassigned interfaces
     for j, n in enumerate(network):
@@ -223,7 +220,6 @@ sudo ip link set ${TAPDEV_%(I)i} up
 echo "Bringing up TAP device..."
 sudo ip link set ${HOSTNETDEV_%(I)i} up
 sudo ip addr add %(HOSTIP)s/24 dev ${HOSTNETDEV_%(I)i}
-
 echo "Adding route to %(GUESTIP)s..."
 sudo ip route add %(GUESTIP)s via %(GUESTIP)s dev ${HOSTNETDEV_%(I)i}
 """
@@ -240,7 +236,6 @@ def stopNetwork(network):
     template_1 = """
 echo "Deleting route..."
 sudo ip route flush dev ${HOSTNETDEV_%(I)i}
-
 echo "Bringing down TAP device..."
 sudo ip link set ${TAPDEV_%(I)i} down
 """
@@ -345,19 +340,8 @@ def process(infile, iid, arch, endianness=None, makeQemuCmd=False, outfile=None)
     return success
 
 def archEnd(value):
-    arch = None
-    end = None
-
     tmp = value.lower()
-    if tmp.startswith("mips"):
-        arch = "mips"
-    elif tmp.startswith("arm"):
-        arch = "arm"
-    if tmp.endswith("el"):
-        end = "el"
-    elif tmp.endswith("eb"):
-        end = "eb"
-    return (arch, end)
+    return (tmp[:-2], tmp[-2:])
 
 def main():
     infile = None

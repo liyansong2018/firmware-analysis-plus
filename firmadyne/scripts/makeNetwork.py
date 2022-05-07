@@ -135,7 +135,8 @@ def ifaceNo(dev):
 
 def qemuArchNetworkConfig(i, arch, n):
     if not n:
-        if arch == "arm":
+        # Fix https://github.com/liyansong2018/firmware-analysis-plus/issues/32
+        if arch == "other":
             return "-device virtio-net-device,netdev=net%(I)i -netdev socket,id=net%(I)i,listen=:200%(I)i" % {'I': i}
         else:
             return "-net nic,vlan=%(VLAN)i -net socket,vlan=%(VLAN)i,listen=:200%(I)i" % {'I': i, 'VLAN' : i}

@@ -12,3 +12,9 @@
 - 增加无binwalk模式
 - 修改若干描述
 - 修复mips架构不能调试的问题
+
+
+### v2.2 [2022-05-07]
+
+- Fix mipsel and armel network error
+- Fix directory from nvram

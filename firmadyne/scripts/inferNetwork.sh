@@ -13,7 +13,7 @@ else
 fi
 
 if check_number $1; then
-    echo "Usage: inferNetwork.sh <image ID> [<architecture>]"
+    echo "Usage: inferNetwork.sh <image ID> [<architecture>] [<time>]"
     exit 1
 fi
 IID=${1}
@@ -36,8 +36,10 @@ else
     fi
 fi
 
-echo "Running firmware ${IID}: terminating after 60 secs..."
-timeout --preserve-status --signal SIGINT 60 "${SCRIPT_DIR}/run.${ARCH}.sh" "${IID}"
+TIME=${3}
+
+echo "Running firmware ${IID}: terminating after ${TIME} secs..."
+timeout --preserve-status --signal SIGINT ${TIME} "${SCRIPT_DIR}/run.${ARCH}.sh" "${IID}"
 sleep 1
 
 echo "Inferring network..."

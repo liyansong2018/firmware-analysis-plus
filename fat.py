@@ -17,14 +17,14 @@ sudo_pass = config["DEFAULT"].get("sudo_password", "")
 def show_banner():
     print ("""
              
-		______   _                ___                 
-		|  ___| (_)              / _ \                
-		| |_     _   _ __ ___   / /_\ \  _ __    ___  
-		|  _|   | | | '_ ` _ \  |  _  | | '_ \  / __| ++
-		| |     | | | | | | | | | | | | | | | | \__ \ 
-		\_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
+            ______   _                ___                 
+            |  ___| (_)              / _ \                
+            | |_     _   _ __ ___   / /_\ \  _ __    ___  
+            |  _|   | | | '_ ` _ \  |  _  | | '_ \  / __| ++
+            | |     | | | | | | | | | | | | | | | | \__ \ 
+            \_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v2.2
+            Welcome to the Firmware Analysis Plus - v2.2
  By lys - https://github.com/liyansong2018/firmware-analysis-plus
     """)
 
@@ -108,10 +108,10 @@ def make_image(arch, image_id):
     child.expect_exact(pexpect.EOF)
 
 
-def infer_network(arch, image_id, qemu_dir):
+def infer_network(arch, image_id, infer_time, qemu_dir):
     print ("[+] Setting up the network connection, please standby...")
     network_cmd = os.path.join(firmadyne_path, "scripts/inferNetwork.sh")    
-    network_args = [image_id, arch]
+    network_args = [image_id, arch, infer_time]
 
     if qemu_dir:
         path = os.environ["PATH"]
@@ -158,6 +158,7 @@ def main():
     parser.add_argument("firm_path", help="The path to the firmware image", type=str)
     parser.add_argument("-q", "--qemu", metavar="qemu_path", help="The qemu version to use (must exist within qemu-builds directory). If not specified, the qemu version installed system-wide will be used", type=str)
     parser.add_argument("-b", "--binwalk", metavar="compiled_binwalk", help="Has binwalk been compiled? yes or no, 1 or 0", type=str)
+    parser.add_argument("-t", "--time", default="60", metavar="network_infer_time", help="Network infer time", type=str)
     args = parser.parse_args()
 
     qemu_ver = args.qemu
@@ -176,7 +177,7 @@ def main():
     else:
         arch = identify_arch(image_id)
         make_image(arch, image_id)
-        infer_network(arch, image_id, qemu_dir)
+        infer_network(arch, image_id, args.time, qemu_dir)
         final_run(image_id, arch, qemu_dir)
 
 

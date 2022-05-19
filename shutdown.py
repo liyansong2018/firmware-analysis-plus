@@ -6,7 +6,7 @@ from configparser import ConfigParser
 import re
 
 config = ConfigParser()
-config.read("fat.config")
+config.read("fap.config")
 firmadyne_path = config["DEFAULT"].get("firmadyne_path", "")
 sudo_pass = config["DEFAULT"].get("sudo_password", "")
 

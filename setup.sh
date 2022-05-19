@@ -23,11 +23,11 @@ cd ..
 #chmod +x fat.py
 #chmod +x reset.py
 
-# Set firmadyne_path in fat.config
-sed -i "/firmadyne_path=/c\firmadyne_path=$firmadyne_dir" fat.config
+# Set firmadyne_path in fap.config
+sed -i "/firmadyne_path=/c\firmadyne_path=$firmadyne_dir" fap.config
 
 echo "====================================================="
 echo "Firmware Analysis Plus installed successfully!"
 echo "Before running fat.py for the first time,"
-echo "please edit fat.config and provide your sudo password"
+echo "please edit fap.config and provide your sudo password"
 echo "====================================================="

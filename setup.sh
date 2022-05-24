@@ -20,7 +20,7 @@ sed -i 's/env python/env python3/' ./sources/extractor/extractor.py
 cd ..
 
 #echo "Setting up firmware analysis plus"
-#chmod +x fat.py
+#chmod +x fap.py
 #chmod +x reset.py
 
 # Set firmadyne_path in fap.config
@@ -28,6 +28,6 @@ sed -i "/firmadyne_path=/c\firmadyne_path=$firmadyne_dir" fap.config
 
 echo "====================================================="
 echo "Firmware Analysis Plus installed successfully!"
-echo "Before running fat.py for the first time,"
+echo "Before running fap.py for the first time,"
 echo "please edit fap.config and provide your sudo password"
 echo "====================================================="

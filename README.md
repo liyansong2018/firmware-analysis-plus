@@ -60,7 +60,7 @@ cd firmware-analysis-plus
                 | |     | | | | | | | | | | | | | | | | \__ \ 
                 \_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v2.1
+                Welcome to the Firmware Analysis Plus - v2.2
  By lys - https://github.com/liyansong2018/firmware-analysis-plus | @liyansong
     
 [+] Firmware: wnap320_V3.7.11.4_firmware.tar

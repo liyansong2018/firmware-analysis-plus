@@ -22,4 +22,4 @@ child = pexpect.spawn("/bin/sh" , ["-c", "sudo kill -9 " + process_id])
 child.sendline(sudo_pass)
 child.expect_exact(pexpect.EOF)
 
-print ("[+] All done. Go ahead and run fat.py to continue firmware analysis")
+print ("[+] All done. Go ahead and run fap.py to continue firmware analysis")

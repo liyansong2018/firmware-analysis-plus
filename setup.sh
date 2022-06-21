@@ -2,7 +2,7 @@
 # python3
 
 sudo apt update
-sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan
+sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-utils
 sudo pip3 install python-magic -i https://pypi.mirrors.ustc.edu.cn/simple/
 
 cd firmadyne

@@ -3,6 +3,7 @@
 import os
 import os.path
 import pexpect
+import subprocess
 import sys
 import argparse
 
@@ -116,15 +117,16 @@ def infer_network(arch, image_id, infer_time, qemu_dir):
     if qemu_dir:
         path = os.environ["PATH"]
         newpath = qemu_dir + ":" + path
-        child = pexpect.spawn(network_cmd, network_args, cwd=firmadyne_path, env={"PATH":newpath})        
+		# Fix Ubuntu16.04 python3.5 pexcept.error
+		# Fix https://github.com/liyansong2018/firmware-analysis-plus/issues/37
+        network_cmd = [network_cmd, image_id, arch, infer_time]
+        command_output = subprocess.run(network_cmd, cwd=firmadyne_path, env={"PATH":newpath})
     else:
-    	print(network_cmd, network_args, firmadyne_path, sep = "\n---------\n")
     	child = pexpect.spawn(network_cmd, network_args, cwd=firmadyne_path)
-
-    child.expect_exact("Interfaces:", timeout=None)
-    interfaces = child.readline().strip().decode("utf8")
-    print ("[+] Network interfaces:", interfaces)
-    child.expect_exact(pexpect.EOF)
+    	child.expect_exact("Interfaces:", timeout=None)
+    	interfaces = child.readline().strip().decode("utf8")
+    	print ("[+] Network interfaces:", interfaces)
+    	child.expect_exact(pexpect.EOF)
 
 
 def final_run(image_id, arch, qemu_dir):

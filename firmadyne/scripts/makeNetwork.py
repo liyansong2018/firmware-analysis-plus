@@ -306,7 +306,7 @@ def process(infile, iid, arch, endianness=None, makeQemuCmd=False, outfile=None)
     #find changes of mac addresses for devices
     macChanges = findMacChanges(data, endianness)
 
-    print("Interfaces: %r" % ifacesWithIps)
+    print("[+] [info] Interfaces: %r" % ifacesWithIps)
 
     deviceHasBridge = False
     for iwi in ifacesWithIps:

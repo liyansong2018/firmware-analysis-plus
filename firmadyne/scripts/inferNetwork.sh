@@ -38,11 +38,11 @@ fi
 
 TIME=${3}
 
-echo "Running firmware ${IID}: terminating after ${TIME} secs..."
+echo "[+] [info] Running firmware ${IID}: terminating after ${TIME} secs..."
 timeout --preserve-status --signal SIGINT ${TIME} "${SCRIPT_DIR}/run.${ARCH}.sh" "${IID}"
 sleep 1
 
-echo "Inferring network..."
+echo "[+] [info] Inferring network..."
 python3 "${SCRIPT_DIR}makeNetwork.py" -i "${IID}" -q -o -a "${ARCH}" -S "${SCRATCH_DIR}"
 
-echo "Done!"
+echo "[+] [info] Done!"

@@ -4,7 +4,7 @@ Fap is a greate simulator based on the [firmadyne](https://github.com/firmadyne/
 
 ## Build
 
-Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Kali.**
+Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Ubuntu 16.04 and Kali2020.4**
 
 ```shell
 git clone https://github.com/liyansong2018/firmware-analysis-plus.git
@@ -25,7 +25,7 @@ firmadyne_path=/home/lys/Tools/firmware-analysis-plus/firmadyne
 Monitor firmware
 
 ```Shell
-./fap.py -q ./2.5.0/ ./testcases/iot.bin
+./fap.py -q ./qemu-builds/2.5.0/ ./testcases/iot.bin
 ```
 
 Shut down the simulator

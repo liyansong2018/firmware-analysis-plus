@@ -17,13 +17,16 @@
 
 | Fap 版本                                                     | python 版本      | 支持系统                                        | 安装方法                                                     |
 | ------------------------------------------------------------ | ---------------- | ----------------------------------------------- | ------------------------------------------------------------ |
-| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02         | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
-| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/1.0) | python2、python3 | Beta                                            | Beta                                                         |
-| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/2.0) | python3          | Kali 2020.04 / Kali 2022.01 | 如下所示                                                     |
+| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02         | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
+| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v1.0) | python2、python3 | --                                            | --                                                         |
+| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | python3          | Kali 2020.04 / Kali 2022.01 | 如下所示                                                     |
+| [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | python3          | Ubuntu16.04 / Kali 2020.04 | 如下所示                                                     |
+
+> **经过验证，Ubuntu2022 以及 Kali2022 最新版 binwalk 存在问题，许多固件无法提取根文件系统，在此不推荐使用！<br/>
+如果你是 Ubuntu16.04，那么恭喜你，不需要单独安装 binwalk。如果你是 Kali 用户，则需要源码编译 binwalk，否则只能使用无 binwalk 模式的 Fap。**
+
 
 ## 安装 binwalk
-
-**Kali 2022 请忽略此步骤！最新版本 Kali 已经完美集成 binwalk 的 API**
 
 以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
 
@@ -50,7 +53,7 @@ cd firmware-analysis-plus
 
 ```
 ┌──(lys㉿kali)-[~/Documents/IoT/firmware-analysis-plus]
-└─$ ./fap.py -q ./2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar                
+└─$ ./fap.py -q ./qemu-builds/2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar                
 
              
                 ______   _                ___                 
@@ -60,7 +63,7 @@ cd firmware-analysis-plus
                 | |     | | | | | | | | | | | | | | | | \__ \ 
                 \_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v2.2
+                Welcome to the Firmware Analysis Plus - v2.3
  By lys - https://github.com/liyansong2018/firmware-analysis-plus | @liyansong
     
 [+] Firmware: wnap320_V3.7.11.4_firmware.tar
@@ -98,14 +101,14 @@ cd firmware-analysis-plus
 如果已经编译好了 `binwalk`，可以使用如下命令进行固件仿真
 
 ```shell
-./fap.py -q ./2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar 
+./fap.py -q /qemu-builds/2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar 
 ```
 
 如果编译 `binwalk` 失败，也没关系，`fap` 也支持不使用 `binwalk` 接口的模式，但是需要我们预先解压固件中的文件系统，并重新打包
 
 ```shell
 tar -czvf test.tar.gz *		# 一定要在固件文件系统的根目录下重新打包
-./fap.py -q ./2.5.0/ -b 0  ./testcases/test.tar.gz
+./fap.py -q ./qemu-builds/2.5.0/ -b 0  ./testcases/test.tar.gz
 ```
 
 ### 支持的固件
@@ -142,6 +145,7 @@ Fap 定制版（针对特定固件定制的版本）
 - [固件远程登录及调试](https://github.com/liyansong2018/firmware-analysis-plus/wiki/%E5%9B%BA%E4%BB%B6%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E5%8F%8A%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%B0%83%E8%AF%95)
 - [手把手教你 | IoT设备漏洞复现到固件后门植入](https://zhuanlan.zhihu.com/p/353716569)
 - [CVE-2019-17621 Dlink-859 RCE 复现](http://www.manongzj.com/blog/28-tkbcqqitdf.html)
+- [cgibin中与upnp协议有关的一些漏洞分析与复现](https://bbs.pediy.com/thread-272634.htm)
 
 ## 已发现的安全漏洞
 

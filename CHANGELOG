@@ -18,3 +18,8 @@
 
 - Fix mipsel and armel network error
 - Fix directory from nvram
+
+### v2.3 [2022-07-20]
+
+- 修复`Ubuntu16.04`下一些bug (Fix some bugs in ubuntu16.04)
+- `Kali2022/Ubuntu2022-binwalk`无法解压很多固件，所以抛弃了这两个操作系统 (Binwalk could not decompress many firmware, so it abandoned these two operating systems)

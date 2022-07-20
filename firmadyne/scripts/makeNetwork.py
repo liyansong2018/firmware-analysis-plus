@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
+import importlib
+import sys
+importlib.reload(sys)
 
 import sys
 import getopt
@@ -292,7 +296,7 @@ def qemuCmd(iid, network, arch, endianness):
 def process(infile, iid, arch, endianness=None, makeQemuCmd=False, outfile=None):
     brifs = []
     vlans = []
-    data = open(infile).read()
+    data = open(infile, encoding="utf-8").read()
     network = set()
     success = False
 
@@ -337,7 +341,7 @@ def process(infile, iid, arch, endianness=None, makeQemuCmd=False, outfile=None)
     if qemuCommandLine:
         success = True
     if outfile:
-        with open(outfile, "w") as out:
+        with open(outfile, "w", encoding="utf-8") as out:
             out.write(qemuCommandLine)
         os.chmod(outfile, stat.S_IRWXU | stat.S_IRGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
     else:

@@ -22,8 +22,7 @@
 | [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | python3          | Kali 2020.04 / Kali 2022.01 | 如下所示                                                     |
 | [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | python3          | Ubuntu16.04 / Kali 2020.04 | 如下所示                                                     |
 
-> **经过验证，Ubuntu2022 以及 Kali2022 最新版 binwalk 存在问题，许多固件无法提取根文件系统，在此不推荐使用！<br/>
-如果你是 Ubuntu16.04，那么恭喜你，不需要单独安装 binwalk。如果你是 Kali 用户，则需要源码编译 binwalk，否则只能使用无 binwalk 模式的 Fap。**
+> **经过验证，Ubuntu2022 以及 Kali2022 最新版 binwalk 存在问题，许多固件无法提取根文件系统，在此不推荐使用！&nbsp;&nbsp;如果你是 Ubuntu16.04，那么恭喜你，不需要单独安装 binwalk。如果你是 Kali 用户，则需要源码编译 binwalk，否则只能使用无 binwalk 模式的 Fap。**
 
 
 ## 安装 binwalk

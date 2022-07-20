@@ -189,7 +189,7 @@ def main():
     qemu_ver = args.qemu
     qemu_dir = None
     if qemu_ver:
-        qemu_dir = os.path.abspath(os.path.join("qemu-builds", qemu_ver))
+        qemu_dir = os.path.abspath(args.qemu)
         if not os.path.isdir(qemu_dir):
             print ("[!] Directory {0} not found".format(qemu_dir))
             print ("[+] Using system qemu")

@@ -1,5 +1,4 @@
 ### v2.0
-
 - 安装流程进一步简化，增加新版本库的支持，删除冗余库
 - 移除 `python2`，之前的版本需要 `python2` 和 `python3` 的同时支持
 - 移除 `setup2kali.sh`，同时修改 `setup.sh`
@@ -8,18 +7,18 @@
 - 修改 `binwalk` 安装脚本
 
 ### v2.1
-
 - 增加无binwalk模式
 - 修改若干描述
 - 修复mips架构不能调试的问题
 
-
 ### v2.2 [2022-05-07]
-
 - Fix mipsel and armel network error
 - Fix directory from nvram
 
 ### v2.3 [2022-07-20]
-
 - 修复`Ubuntu16.04`下一些bug (Fix some bugs in ubuntu16.04)
 - `Kali2022/Ubuntu2022-binwalk`无法解压很多固件，所以抛弃了这两个操作系统 (Binwalk could not decompress many firmware, so it abandoned these two operating systems)
+
+### v2.3.1 [2022-07-21]
+- 修复Fap在多个Linux发行版中的兼容性问题 (Fix FAP compatibility issues in multiple Linux distributions)
+- 创建docker镜像 (Create a docker image)

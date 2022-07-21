@@ -15,13 +15,13 @@
 - 多数嵌入式设备含有一个 `nvram` 芯片，保存一些重要的配置信息，`firmadyne` 实现一个新的 `libnvram.so` 库文件，通过代码模拟固件启动时加载 `nvram` 配置信息的行为。
 
 
-| Fap 版本                                                     | python 版本      | 支持系统                                               | 备注                                                         |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
-| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02              | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
-| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v1.0) | python2、python3 | Kali 2020.02                                           | 测试版本                                                     |
-| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | python3          | Kali 2020.04 / Kali 2022.01                            | 备份fat                                                      |
-| [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | python3          | Ubuntu16.04 / Kali 2020.04                             | 修复多个bug                                                  |
-| [v2.3.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3.1) | python3          | Ubuntu16.04 / Ubuntu18.04 / Ubuntu20.04 / Kali 2020.04 | 提高兼容性&添加Docker                                        |
+| Fap 版本                                                     | 支持系统                                               | 备注                                                         |
+| ------------------------------------------------------------ |  ------------------------------------------------------ | ------------------------------------------------------------ |
+| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v0.1) | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02              | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
+| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v1.0) | Kali 2020.02                                           | 测试版本                                                     |
+| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | Kali 2020.04 / Kali 2022.01                            | 备份fat                                                      |
+| [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | Ubuntu16.04 / Kali 2020.04                             | 修复多个bug                                                  |
+| [v2.3.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3.1) | Ubuntu16.04 / Ubuntu18.04 / Ubuntu20.04 / Kali 2020.04 | 提高兼容性&添加Docker                                        |
 
 > **经过验证，Ubuntu2022 以及 Kali2022 最新版 binwalk 存在问题，许多固件无法提取根文件系统，在此不推荐使用！&nbsp;&nbsp;如果你是 Ubuntu16.04，那么恭喜你，不需要单独安装 binwalk。如果你是 Kali 用户，则需要源码编译 binwalk，否则只能使用无 binwalk 模式的 Fap。**
 

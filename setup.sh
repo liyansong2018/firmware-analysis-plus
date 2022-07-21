@@ -1,10 +1,17 @@
 #!/bin/sh
 # python3
 
+RELEASE=`lsb_release -i | sed 's/Distributor ID:\s//g'`
+VERSION=`lsb_release -r | sed 's/Release:\s//g'`
+
 sudo apt update
-sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-utils qemu-system-arm qemu-system-mips
+sudo apt install -y python3-pip python3-pexpect unzip busybox-static fakeroot kpartx snmp uml-utilities util-linux vlan qemu-utils binwalk
 sudo pip3 install python-magic -i https://pypi.mirrors.ustc.edu.cn/simple/
-sudo pip2 install python-magic -i https://pypi.mirrors.ustc.edu.cn/simple/
+
+if [ $RELEASE = "Ubuntu" ] && [ $VERSION = "16.04" ];then
+    sudo apt install -y python-pip qemu-system-arm qemu-system-mips
+    sudo pip2 install python-magic -i https://pypi.mirrors.ustc.edu.cn/simple/
+fi
 
 cd firmadyne
 

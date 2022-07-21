@@ -15,28 +15,19 @@
 - 多数嵌入式设备含有一个 `nvram` 芯片，保存一些重要的配置信息，`firmadyne` 实现一个新的 `libnvram.so` 库文件，通过代码模拟固件启动时加载 `nvram` 配置信息的行为。
 
 
-| Fap 版本                                                     | python 版本      | 支持系统                                        | 安装方法                                                     |
-| ------------------------------------------------------------ | ---------------- | ----------------------------------------------- | ------------------------------------------------------------ |
-| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02         | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
-| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v1.0) | python2、python3 | --                                            | --                                                         |
-| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | python3          | Kali 2020.04 / Kali 2022.01 | 如下所示                                                     |
-| [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | python3          | Ubuntu16.04 / Kali 2020.04 | 如下所示                                                     |
+| Fap 版本                                                     | python 版本      | 支持系统                                               | 备注                                                         |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| [v0.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v0.1) | python2、python3 | Ubuntu16.04 / Ubuntu 18.04 / Kali 2020.02              | [Fap v0.1 版本手册](https://github.com/liyansong2018/firmware-analysis-plus/wiki/FAP-v0.1-%E7%89%88%E6%9C%AC%E6%89%8B%E5%86%8C) |
+| [v1.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v1.0) | python2、python3 | Kali 2020.02                                           | 测试版本                                                     |
+| [v2.0](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.0) | python3          | Kali 2020.04 / Kali 2022.01                            | 备份fat                                                      |
+| [v2.3](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3) | python3          | Ubuntu16.04 / Kali 2020.04                             | 修复多个bug                                                  |
+| [v2.3.1](https://github.com/liyansong2018/firmware-analysis-plus/releases/tag/v2.3.1) | python3          | Ubuntu16.04 / Ubuntu18.04 / Ubuntu20.04 / Kali 2020.04 | 提高兼容性&添加Docker                                        |
 
 > **经过验证，Ubuntu2022 以及 Kali2022 最新版 binwalk 存在问题，许多固件无法提取根文件系统，在此不推荐使用！&nbsp;&nbsp;如果你是 Ubuntu16.04，那么恭喜你，不需要单独安装 binwalk。如果你是 Kali 用户，则需要源码编译 binwalk，否则只能使用无 binwalk 模式的 Fap。**
 
+## Fap 常见用法
 
-## 安装 binwalk
-
-以编译源码的方式安装`binwalk`，时至今日，`binwalk` 构建脚本中的诸多依赖已无法正常安装，于是自己 `fork` 了一份新的 `binwalk`，进行了修改。关于修改细节的描述，可参考：https://github.com/liyansong2018/binwalk
-
-```
-git clone https://github.com/liyansong2018/binwalk.git
-cd binwalk
-./deps.sh
-sudo python3 setup.py install
-```
-
-## 安装 Fap
+### 安装
 
 ```shell
 git clone https://github.com/liyansong2018/firmware-analysis-plus.git
@@ -44,15 +35,15 @@ cd firmware-analysis-plus
 ./setup.sh
 ```
 
-## 配置
+### 配置
 
 修改 `fap.config` 文件中的密码，改为 `root` 系统用户的密码
 
-## 运行
+### 运行
 
 ```
 ┌──(lys㉿kali)-[~/Documents/IoT/firmware-analysis-plus]
-└─$ ./fap.py -q ./qemu-builds/2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar                
+└─$ ./fap.py -q ./qemu-builds/2.5.0/ ./testcases/wnap320_V3.7.11.4_firmware.tar               
 
              
                 ______   _                ___                 
@@ -62,7 +53,7 @@ cd firmware-analysis-plus
                 | |     | | | | | | | | | | | | | | | | \__ \ 
                 \_|     |_| |_| |_| |_| \_| |_/ |_| |_| |___/
 
-                Welcome to the Firmware Analysis Plus - v2.3
+                Welcome to the Firmware Analysis Plus - v2.3.1
  By lys - https://github.com/liyansong2018/firmware-analysis-plus | @liyansong
     
 [+] Firmware: wnap320_V3.7.11.4_firmware.tar
@@ -81,21 +72,45 @@ cd firmware-analysis-plus
 
 此时回车，可以进入路由器的 shell，也可以打开 Web 端路由器管理页面。
 
-## 关闭终端
+### 关闭终端
 
 ```shell
 ./shutdown.py
 ```
 
-## 重置和删除中间文件
+### 重置和删除中间文件
 
 ```shell
 ./reset.py
 ```
 
+## Docker
+
+由于固件模拟在不同操作系统上会有不同的表现，经过众多安全研究者的强烈建议，Fap 2.3.1 已添加对 Docker 镜像的支持，如果你遇到了环境问题，可以直接使 fap-docker！
+
+```shell
+# 拉取镜像
+sudo docker push liyansong2022/fap-docker:2.3.1
+# 创建容器
+sudo docker run -it --privileged -p 8080:80 --name fap liyansong2022/fap-docker:2.3.1 /bin/bash
+
+# 进入容器
+sudo docker exec -t fap /bin/sh
+# 使用Fap
+root@a8e4d33280d9:/# cd root/firmware-analysis-plus/
+root@a8e4d33280d9:~/firmware-analysis-plus# ./fap.py testcases/iot_dir880l_110b01.bin 
+
+# 在docker容器内添加端口映射
+root@a8e4d33280d9:/# vi /etc/rinetd.conf
+0.0.0.0 80 192.168.0.1 80
+
+root@a8e4d33280d9:/# pkill rinetd   		     # 关闭进程
+root@a8e4d33280d9:/# rinetd -c /etc/rinetd.conf  # 启动转发
+```
+
 ## FAQ
 
-### 编译 binwalk 失败怎么办？
+### 编译 binwalk 失败或者解压镜像失败怎么办？
 
 如果已经编译好了 `binwalk`，可以使用如下命令进行固件仿真
 
@@ -109,6 +124,8 @@ cd firmware-analysis-plus
 tar -czvf test.tar.gz *		# 一定要在固件文件系统的根目录下重新打包
 ./fap.py -q ./qemu-builds/2.5.0/ -b 0  ./testcases/test.tar.gz
 ```
+
+常见问题请直接访问 [issue](https://github.com/liyansong2018/firmware-analysis-plus/issues)。
 
 ### 支持的固件
 
@@ -148,7 +165,7 @@ Fap 定制版（针对特定固件定制的版本）
 
 ## 已发现的安全漏洞
 
-比较幸运的是，我们也是用该工具发现了一些路由器的安全漏洞，因此，使用 firmware-analysis-plus 不仅可以复现 IoT 固件安全漏洞，提供靶场和演练环境，也可以用于漏洞挖掘。2021 年通过 firmware-analysis-plus 发现的可以实现远程代码执行的漏洞如下
+比较幸运的是，我们也是用该工具发现了一些路由器的安全漏洞，因此，使用 Fap 不仅可以复现 IoT 固件安全漏洞，提供靶场和演练环境，也可以用于漏洞挖掘。2021 年通过Fap  发现的可以实现远程代码执行的漏洞如下
 
 - [CVE-2021-29302](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-29302)
 - [CVE-2021-34202](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34202)

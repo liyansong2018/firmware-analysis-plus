@@ -90,12 +90,14 @@ cd firmware-analysis-plus
 
 ```shell
 # 拉取镜像
-sudo docker push liyansong2022/fap-docker:2.3.1
+sudo docker pull liyansong2022/fap-docker:2.3.1
+
 # 创建容器
 sudo docker run -it --privileged -p 8080:80 --name fap liyansong2022/fap-docker:2.3.1 /bin/bash
 
 # 进入容器
 sudo docker exec -t fap /bin/sh
+
 # 使用Fap
 root@a8e4d33280d9:/# cd root/firmware-analysis-plus/
 root@a8e4d33280d9:~/firmware-analysis-plus# ./fap.py testcases/iot_dir880l_110b01.bin 
@@ -104,7 +106,7 @@ root@a8e4d33280d9:~/firmware-analysis-plus# ./fap.py testcases/iot_dir880l_110b0
 root@a8e4d33280d9:/# vi /etc/rinetd.conf
 0.0.0.0 80 192.168.0.1 80
 
-root@a8e4d33280d9:/# pkill rinetd   		     # 关闭进程
+root@a8e4d33280d9:/# pkill rinetd   		 # 关闭进程
 root@a8e4d33280d9:/# rinetd -c /etc/rinetd.conf  # 启动转发
 ```
 

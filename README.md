@@ -110,6 +110,10 @@ root@a8e4d33280d9:/# pkill rinetd   		 # 关闭进程
 root@a8e4d33280d9:/# rinetd -c /etc/rinetd.conf  # 启动转发
 ```
 
+通过在宿主机上访问 http://127.0.0.1:8080 即可打开 docker 中的 qemu 模拟的固件。相比于直接使用 Fap，使用 docker 的缺陷是
+- 如果要添加新的固件，需要手动修改 docker 容器的启动参数，共享文件；或者直接在容器中下载公网上的固件。
+- 如果需要访问固件中的端口，也需要手动修改 docker 容器的启动参数，并在 docker 容器中自行添加端口映射。
+
 ## FAQ
 
 ### 编译 binwalk 失败或者解压镜像失败怎么办？

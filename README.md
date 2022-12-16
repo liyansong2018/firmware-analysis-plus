@@ -162,12 +162,12 @@ Fap 定制版（针对特定固件定制的版本）
 
 本工具的相关介绍以及一些安全研究员利用此工具发现或者复现的安全漏洞。
 
+- [cgibin中与upnp协议有关的一些漏洞分析与复现](https://bbs.pediy.com/thread-272634.htm)
+- [手把手教你 | IoT设备漏洞复现到固件后门植入](https://zhuanlan.zhihu.com/p/353716569)
+- [CVE-2019-17621 Dlink-859 RCE 复现](http://www.manongzj.com/blog/28-tkbcqqitdf.html)
 - [开源固件仿真平台fap对嵌入式固件的模拟与定制](https://www.freebuf.com/sectool/264053.html)
 - [使用 firmware-analysis-plus 一键模拟固件](https://blog.csdn.net/song_lee/article/details/105518309)
 - [固件远程登录及调试](https://github.com/liyansong2018/firmware-analysis-plus/wiki/%E5%9B%BA%E4%BB%B6%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E5%8F%8A%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%B0%83%E8%AF%95)
-- [手把手教你 | IoT设备漏洞复现到固件后门植入](https://zhuanlan.zhihu.com/p/353716569)
-- [CVE-2019-17621 Dlink-859 RCE 复现](http://www.manongzj.com/blog/28-tkbcqqitdf.html)
-- [cgibin中与upnp协议有关的一些漏洞分析与复现](https://bbs.pediy.com/thread-272634.htm)
 
 ## 已发现的安全漏洞
 
@@ -177,4 +177,4 @@ Fap 定制版（针对特定固件定制的版本）
 - [CVE-2021-34202](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34202)
 - [CVE-2021-34203](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34203)
 
-> 由于个人精力有限，加之上游项目 firmadyne 架构近几年没有进行调整，因此本项目近期不会更新，但是此工具仍然可用于 IoT 漏洞挖掘或者安全研究。
+> 由于个人精力有限，加之上游项目 Firmadyne 架构近几年没有进行调整，因此本项目近期不会更新，但是此工具仍然可用于 IoT 漏洞挖掘或者安全研究。除基于 **Firmadyne** 的固件模拟项目之外，**EMUX(ARMX)** 也是仿真路由器固件不错的选择！

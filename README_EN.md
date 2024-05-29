@@ -4,7 +4,7 @@ Fap is a greate simulator based on the [firmadyne](https://github.com/firmadyne/
 
 ## Build
 
-Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Ubuntu 16.04 and Kali2020.4**
+Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Ubuntu 20.04 and [binwalk-f4a5759](https://github.com/liyansong2018/binwalk)**
 
 ```shell
 git clone https://github.com/liyansong2018/firmware-analysis-plus.git

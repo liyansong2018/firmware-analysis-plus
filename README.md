@@ -18,8 +18,7 @@
 - `qemu` 提供多种架构指令的模拟，使用预先编译好的内核启动固件中的核心业务；
 - 多数嵌入式设备含有一个 `nvram` 芯片，保存一些重要的配置信息，`firmadyne` 实现一个新的 `libnvram.so` 库文件，通过代码模拟固件启动时加载 `nvram` 配置信息的行为。
 
-
-**推荐环境：Ubuntu 20.04 + [binwalk-f4a5759](https://github.com/liyansong2018/binwalk)**，如果配置环境出错，可以直接下载打包好的 [VMware 虚拟机镜像](https://pan.baidu.com/s/1eVNxoLKlqAQHcrSMfI7tQw?pwd=jpy4)。
+**推荐环境：Ubuntu 20.04 + [binwalk-f4a5759](https://github.com/liyansong2018/binwalk)**，如果配置环境出错，可以直接下载打包好的 [VMware 虚拟机镜像](https://pan.baidu.com/s/1eVNxoLKlqAQHcrSMfI7tQw?pwd=jpy4)；也可以使用使用 `docker-menu.sh` 脚本建立 Docker 容器，Docker 国内需要使用科学上网或配置源。
 
 ## Fap 常见用法
 

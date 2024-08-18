@@ -4,7 +4,7 @@ Fap is a greate simulator based on the [firmadyne](https://github.com/firmadyne/
 
 ## Build
 
-Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Ubuntu 20.04 and [binwalk-f4a5759](https://github.com/liyansong2018/binwalk)**
+Installing Fap is easy. **We strongly recommend installing Fap on the latest version of Ubuntu 20.04 and [binwalk-f4a5759](https://github.com/liyansong2018/binwalk)**.  [VMware Image](https://pan.baidu.com/s/1eVNxoLKlqAQHcrSMfI7tQw?pwd=jpy4) and docker `docker-menu.sh` is also available.
 
 ```shell
 git clone https://github.com/liyansong2018/firmware-analysis-plus.git
